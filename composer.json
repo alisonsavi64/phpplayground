@@ -1,0 +1,16 @@
+{
+    "name": "php/playground",
+    "autoload": {
+        "psr-4": {
+            "Php\\Playground\\": "src/"
+        }
+    },
+    "require-dev": {
+        "pestphp/pest": "^1.23"
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    }
+}
