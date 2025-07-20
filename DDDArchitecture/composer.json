@@ -2,7 +2,7 @@
     "name": "php/playground",
     "autoload": {
         "psr-4": {
-            "Php\\Playground\\": "src/"
+            "Src\\": "src/"
         }
     },
     "require-dev": {
