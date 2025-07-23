@@ -3,16 +3,15 @@
 namespace MVCArchitecture\Core;
 use MVCArchitecture\Core\Request;
 use MVCArchitecture\Core\Database;
+use Redis;
 
 class Router {
-    private $request;
-    private $database;
     private $routes = [
         'get' => [],
         'post' => []
     ];
 
-    public function __construct(Request $request, Database $database){
+    public function __construct(private Request $request, private Database $database, private Redis $redis){
         $this->request = $request;
         $this->database = $database;
     }
@@ -38,7 +37,7 @@ class Router {
                 array_shift($matches); 
 
                 if (is_array($callback)) {
-                    $controller = new $callback[0]($this->database->connection);
+                    $controller = new $callback[0]($this->database->connection, $this->redis);
                     return call_user_func_array([$controller, $callback[1]], array_merge([$this->request], $matches));
                 }
 

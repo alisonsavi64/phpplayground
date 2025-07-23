@@ -6,5 +6,5 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
-    'Aliso\\MvcArchitecture\\' => array($baseDir . '/src'),
+    'MVCArchitecture\\' => array($baseDir . '/app'),
 );
