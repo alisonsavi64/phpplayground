@@ -1,12 +1,12 @@
 <?php
 
+use MVCArchitecture\App\Events\SendEmailEvent;
 use MVCArchitecture\Core\Request;
 use MVCArchitecture\App\Models\User;
 
 class AuthController{
 
-    private $connection;
-    public function __construct($connection){
+    public function __construct(private PDO $connection, private Redis $redis){
         $this->connection = $connection;
     }
 
@@ -34,6 +34,10 @@ class AuthController{
             $ext = pathinfo($fileName, PATHINFO_EXTENSION);
             move_uploaded_file( $profilePic['tmp_name'], __DIR__ . "/../../storage/profiles/$userId/profile_pic.$ext");
         }
+
+        $sendEmailEvent = new SendEmailEvent($userModel);        
+
+        $this->redis->lPush('email_queue', $sendEmailEvent->toQueue());
 
         echo $email;
     }

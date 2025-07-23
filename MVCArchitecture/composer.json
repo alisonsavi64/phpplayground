@@ -2,7 +2,7 @@
     "name": "aliso/mvc-architecture",
     "autoload": {
         "psr-4": {
-            "App\\": "app/"
+            "MVCArchitecture\\": "app/"
         }
     },
     "authors": [

@@ -10,9 +10,9 @@ class Database{
 
     public function __construct(){
         try{
-            $this->connection = new PDO("pgsql:host=localhost;dbname=mvcteste;", 'root', 'password');
+            $this->connection = new PDO("pgsql:host=postgresdb;dbname=mvcteste;", 'root', 'password');            
         } catch (PDOException $e){
-              echo "Connection failed: " . $e->getMessage();
+              var_dump("Connection failed: " . $e->getMessage());
         }        
     }
 }
